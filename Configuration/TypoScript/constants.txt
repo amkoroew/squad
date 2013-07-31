@@ -1,0 +1,14 @@
+plugin.tx_squad {
+	view {
+		# cat=plugin.tx_squad/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:squad/Resources/Private/Templates/
+		# cat=plugin.tx_squad/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:squad/Resources/Private/Partials/
+		# cat=plugin.tx_squad/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:squad/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_squad//a; type=string; label=Default storage PID
+		storagePid =
+	}
+}
