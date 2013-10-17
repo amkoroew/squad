@@ -3,13 +3,13 @@ if (!defined ('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-$TCA['tx_squad_domain_model_squad'] = array(
-	'ctrl' => $TCA['tx_squad_domain_model_squad']['ctrl'],
+$TCA['tx_squad_domain_model_role'] = array(
+	'ctrl' => $TCA['tx_squad_domain_model_role']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, roles',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, roles,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, members,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -38,8 +38,8 @@ $TCA['tx_squad_domain_model_squad'] = array(
 				'items' => array(
 					array('', 0),
 				),
-				'foreign_table' => 'tx_squad_domain_model_squad',
-				'foreign_table_where' => 'AND tx_squad_domain_model_squad.pid=###CURRENT_PID### AND tx_squad_domain_model_squad.sys_language_uid IN (-1,0)',
+				'foreign_table' => 'tx_squad_domain_model_role',
+				'foreign_table_where' => 'AND tx_squad_domain_model_role.pid=###CURRENT_PID### AND tx_squad_domain_model_role.sys_language_uid IN (-1,0)',
 			),
 		),
 		'l10n_diffsource' => array(
@@ -98,28 +98,16 @@ $TCA['tx_squad_domain_model_squad'] = array(
 		),
 		'name' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:squad/Resources/Private/Language/locallang_db.xlf:tx_squad_domain_model_squad.name',
+			'label' => 'LLL:EXT:squad/Resources/Private/Language/locallang_db.xlf:tx_squad_domain_model_role.name',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
 				'eval' => 'trim,required'
 			),
 		),
-		'roles' => array(
-			'exclude' => 0,
-			'label' => 'LLL:EXT:squad/Resources/Private/Language/locallang_db.xlf:tx_squad_domain_model_squad.roles',
+		'squad' => array(
 			'config' => array(
-				'type' => 'inline',
-				'foreign_table' => 'tx_squad_domain_model_role',
-				'foreign_field' => 'squad',
-				'maxitems'      => 9999,
-				'appearance' => array(
-					'collapseAll' => 0,
-					'levelLinksPosition' => 'top',
-					'showSynchronizationLink' => 1,
-					'showPossibleLocalizationRecords' => 1,
-					'showAllLocalizationLink' => 1
-				),
+				'type' => 'passthrough',
 			),
 		),
 	),

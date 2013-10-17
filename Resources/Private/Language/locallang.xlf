@@ -10,7 +10,17 @@
 			<trans-unit id="tx_squad_domain_model_squad.name">
 				<source>name</source>
 			</trans-unit>
-			
+			<trans-unit id="tx_squad_domain_model_squad.roles">
+				<source>roles</source>
+			</trans-unit>
+
+			<trans-unit id="tx_squad_domain_model_role">
+				<source>Role</source>
+			</trans-unit>
+			<trans-unit id="tx_squad_domain_model_role.name">
+				<source>name</source>
+			</trans-unit>
+
 		</body>
 	</file>
 </xliff>

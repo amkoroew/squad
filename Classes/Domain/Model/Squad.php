@@ -42,6 +42,37 @@ class Squad extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $name;
 
 	/**
+	 * roles
+	 *
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MFG\Squad\Domain\Model\Role>
+	 */
+	protected $roles;
+
+	/**
+	 * __construct
+	 *
+	 * @return Squad
+	 */
+	public function __construct() {
+		//Do not remove the next line: It would break the functionality
+		$this->initStorageObjects();
+	}
+
+	/**
+	 * Initializes all ObjectStorage properties.
+	 *
+	 * @return void
+	 */
+	protected function initStorageObjects() {
+		/**
+		 * Do not modify this method!
+		 * It will be rewritten on each save in the extension builder
+		 * You may modify the constructor of this class instead
+		 */
+		$this->roles = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+	}
+
+	/**
 	 * Returns the name
 	 *
 	 * @return \string $name
@@ -58,6 +89,45 @@ class Squad extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setName($name) {
 		$this->name = $name;
+	}
+
+	/**
+	 * Adds a Role
+	 *
+	 * @param \MFG\Squad\Domain\Model\Role $role
+	 * @return void
+	 */
+	public function addRole(\MFG\Squad\Domain\Model\Role $role) {
+		$this->roles->attach($role);
+	}
+
+	/**
+	 * Removes a Role
+	 *
+	 * @param \MFG\Squad\Domain\Model\Role $roleToRemove The Role to be removed
+	 * @return void
+	 */
+	public function removeRole(\MFG\Squad\Domain\Model\Role $roleToRemove) {
+		$this->roles->detach($roleToRemove);
+	}
+
+	/**
+	 * Returns the roles
+	 *
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MFG\Squad\Domain\Model\Role> $roles
+	 */
+	public function getRoles() {
+		return $this->roles;
+	}
+
+	/**
+	 * Sets the roles
+	 *
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MFG\Squad\Domain\Model\Role> $roles
+	 * @return void
+	 */
+	public function setRoles(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $roles) {
+		$this->roles = $roles;
 	}
 
 }
