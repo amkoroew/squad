@@ -36,24 +36,24 @@ class SquadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	protected $squadRepository;
 
 	/**
-	 * List squad
+	 * action list
+	 *
 	 * @return void
 	 */
 	public function listAction() {
-		$this->view->assignMultiple(array(
-			'hello' => 'Hello, World!'
-		));
+		$squads = $this->squadRepository->findAll();
+		$this->view->assign('squads', $squads);
 	}
 
 	/**
-	 * Show a player
+	 * action show
+	 *
+	 * @param \MFG\Squad\Domain\Model\Squad $squad
 	 * @return void
 	 */
-	public function showAction() {
-		$this->view->assignMultiple(array(
-			'hello' => 'Hello, World!'
-		));
+	public function showAction(\MFG\Squad\Domain\Model\Squad $squad) {
+		$this->view->assign('squad', $squad);
 	}
-}
 
+}
 ?>
