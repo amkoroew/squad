@@ -42,6 +42,37 @@ class Role extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $name;
 
 	/**
+	 * members
+	 *
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MFG\Squad\Domain\Model\Member>
+	 */
+	protected $members;
+
+	/**
+	 * __construct
+	 *
+	 * @return Role
+	 */
+	public function __construct() {
+		//Do not remove the next line: It would break the functionality
+		$this->initStorageObjects();
+	}
+
+	/**
+	 * Initializes all ObjectStorage properties.
+	 *
+	 * @return void
+	 */
+	protected function initStorageObjects() {
+		/**
+		 * Do not modify this method!
+		 * It will be rewritten on each save in the extension builder
+		 * You may modify the constructor of this class instead
+		 */
+		$this->members = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+	}
+
+	/**
 	 * Returns the name
 	 *
 	 * @return \string $name
@@ -58,6 +89,45 @@ class Role extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setName($name) {
 		$this->name = $name;
+	}
+
+	/**
+	 * Adds a Member
+	 *
+	 * @param \MFG\Squad\Domain\Model\Member $member
+	 * @return void
+	 */
+	public function addMember(\MFG\Squad\Domain\Model\Member $member) {
+		$this->members->attach($member);
+	}
+
+	/**
+	 * Removes a Member
+	 *
+	 * @param \MFG\Squad\Domain\Model\Member $memberToRemove The Member to be removed
+	 * @return void
+	 */
+	public function removeMember(\MFG\Squad\Domain\Model\Member $memberToRemove) {
+		$this->members->detach($memberToRemove);
+	}
+
+	/**
+	 * Returns the members
+	 *
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MFG\Squad\Domain\Model\Member> $members
+	 */
+	public function getMembers() {
+		return $this->members;
+	}
+
+	/**
+	 * Sets the members
+	 *
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MFG\Squad\Domain\Model\Member> $members
+	 * @return void
+	 */
+	public function setMembers(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $members) {
+		$this->members = $members;
 	}
 
 }

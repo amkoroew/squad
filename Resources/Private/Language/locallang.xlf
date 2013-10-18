@@ -20,6 +20,16 @@
 			<trans-unit id="tx_squad_domain_model_role.name">
 				<source>name</source>
 			</trans-unit>
+			<trans-unit id="tx_squad_domain_model_role.members">
+				<source>members</source>
+			</trans-unit>
+
+			<trans-unit id="tx_squad_domain_model_member">
+				<source>Member</source>
+			</trans-unit>
+			<trans-unit id="tx_squad_domain_model_member.name">
+				<source>name</source>
+			</trans-unit>
 
 		</body>
 	</file>
