@@ -1,0 +1,20 @@
+<f:layout name="Default" />
+
+<f:section name="content">
+<h1>Listing for Member</h1>
+
+<f:flashMessages />
+
+<table  class="tx_squad" >
+	<tr>
+		<th><f:translate key="tx_squad_domain_model_member.name" /></th>
+	</tr>
+
+	<f:for each="{members}" as="member">
+		<tr>
+			<td><f:link.action action="show" arguments="{member : member}"> {member.name}</f:link.action></td>
+		</tr>
+	</f:for>
+</table>
+
+</f:section>
