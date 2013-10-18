@@ -38,6 +38,19 @@
 				<source>Question</source>
 			</trans-unit>
 
+			<trans-unit id="tx_squad_domain_model_memberquestion">
+				<source>Member Question</source>
+			</trans-unit>
+			<trans-unit id="tx_squad_domain_model_memberquestion.answer">
+				<source>Answer</source>
+			</trans-unit>
+			<trans-unit id="tx_squad_domain_model_memberquestion.member">
+				<source>Member</source>
+			</trans-unit>
+			<trans-unit id="tx_squad_domain_model_memberquestion.question">
+				<source>Question</source>
+			</trans-unit>
+
 		</body>
 	</file>
 </xliff>
