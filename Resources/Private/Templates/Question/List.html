@@ -1,0 +1,20 @@
+<f:layout name="Default" />
+
+<f:section name="content">
+<h1>Listing for Question</h1>
+
+<f:flashMessages />
+
+<table  class="tx_squad" >
+	<tr>
+		<th><f:translate key="tx_squad_domain_model_question.question" /></th>
+	</tr>
+
+	<f:for each="{questions}" as="question">
+		<tr>
+			<td><f:link.action action="show" arguments="{question : question}"> {question.question}</f:link.action></td>
+		</tr>
+	</f:for>
+</table>
+
+</f:section>
