@@ -37,3 +37,15 @@ plugin.tx_squad._CSS_DEFAULT_STYLE (
 		vertical-align:top;
 	}
 )
+
+ # Module configuration
+module.tx_squad {
+	persistence {
+		storagePid = {$module.tx_squad.persistence.storagePid}
+	}
+	view {
+		templateRootPath = {$module.tx_squad.view.templateRootPath}
+		partialRootPath = {$module.tx_squad.view.partialRootPath}
+		layoutRootPath = {$module.tx_squad.view.layoutRootPath}
+	}
+}

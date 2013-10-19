@@ -1,0 +1,14 @@
+<f:layout name="Default" />
+
+<f:section name="content">
+<h1>Edit Member</h1>
+
+<f:flashMessages />
+
+<f:render partial="FormErrors" />
+
+<f:form action="update" name="member" object="{member}" >
+<f:render partial="Member/FormFields" arguments="{member:member}" />
+	<f:form.submit value="Save" />
+</f:form>
+</f:section>

@@ -1,0 +1,14 @@
+<f:layout name="Default" />
+
+<f:section name="content">
+<h1>Edit Squad</h1>
+
+<f:flashMessages />
+
+<f:render partial="FormErrors" />
+
+<f:form action="update" name="squad" object="{squad}" >
+<f:render partial="Squad/FormFields" arguments="{squad:squad}" />
+	<f:form.submit value="Save" />
+</f:form>
+</f:section>

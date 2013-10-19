@@ -1,0 +1,14 @@
+<f:layout name="Default" />
+
+<f:section name="content">
+<h1>New Question</h1>
+
+<f:flashMessages />
+
+<f:render partial="FormErrors" />
+
+<f:form action="create"  name="newQuestion" object="{newQuestion}">
+<f:render partial="Question/FormFields" />
+	<f:form.submit value="Create new" />
+</f:form>
+</f:section>

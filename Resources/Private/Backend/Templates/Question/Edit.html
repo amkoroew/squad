@@ -1,0 +1,14 @@
+<f:layout name="Default" />
+
+<f:section name="content">
+<h1>Edit Question</h1>
+
+<f:flashMessages />
+
+<f:render partial="FormErrors" />
+
+<f:form action="update" name="question" object="{question}" >
+<f:render partial="Question/FormFields" arguments="{question:question}" />
+	<f:form.submit value="Save" />
+</f:form>
+</f:section>
