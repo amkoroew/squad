@@ -44,7 +44,7 @@ class Squad extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * image
 	 *
-	 * @var \string
+	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
 	 */
 	protected $image;
 
@@ -101,7 +101,7 @@ class Squad extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the image
 	 *
-	 * @return \string $image
+	 * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
 	 */
 	public function getImage() {
 		return $this->image;
@@ -110,7 +110,7 @@ class Squad extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the image
 	 *
-	 * @param \string $image
+	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
 	 * @return void
 	 */
 	public function setImage($image) {
