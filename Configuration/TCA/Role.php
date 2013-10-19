@@ -148,5 +148,3 @@ $TCA['tx_squad_domain_model_role'] = array(
 		),
 	),
 );
-
-?>

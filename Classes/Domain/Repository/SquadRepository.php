@@ -34,4 +34,3 @@ namespace MFG\Squad\Domain\Repository;
 class SquadRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 }
-?>

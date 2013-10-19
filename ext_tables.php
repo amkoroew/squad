@@ -194,5 +194,3 @@ $TCA['tx_squad_domain_model_memberquestion'] = array(
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_squad_domain_model_memberquestion.gif'
 	),
 );
-
-?>
