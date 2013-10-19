@@ -72,6 +72,27 @@ class SquadTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
 	 * @test
 	 */
+	public function getImageReturnsInitialValueForString() {
+		$this->assertSame(
+			NULL,
+			$this->fixture->getImage()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setImageForStringSetsImage() {
+		$this->fixture->setImage('Conceived at T3CON10');
+
+		$this->assertSame(
+			'Conceived at T3CON10',
+			$this->fixture->getImage()
+		);
+	}
+	/**
+	 * @test
+	 */
 	public function getRolesReturnsInitialValueForRole() {
 		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->assertEquals(
