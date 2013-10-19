@@ -10,6 +10,9 @@
 			<trans-unit id="tx_squad_domain_model_squad.name">
 				<source>name</source>
 			</trans-unit>
+			<trans-unit id="tx_squad_domain_model_squad.image">
+				<source>image</source>
+			</trans-unit>
 			<trans-unit id="tx_squad_domain_model_squad.roles">
 				<source>roles</source>
 			</trans-unit>

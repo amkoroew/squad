@@ -42,6 +42,13 @@ class Squad extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $name;
 
 	/**
+	 * image
+	 *
+	 * @var \string
+	 */
+	protected $image;
+
+	/**
 	 * roles
 	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MFG\Squad\Domain\Model\Role>
@@ -89,6 +96,25 @@ class Squad extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setName($name) {
 		$this->name = $name;
+	}
+
+	/**
+	 * Returns the image
+	 *
+	 * @return \string $image
+	 */
+	public function getImage() {
+		return $this->image;
+	}
+
+	/**
+	 * Sets the image
+	 *
+	 * @param \string $image
+	 * @return void
+	 */
+	public function setImage($image) {
+		$this->image = $image;
 	}
 
 	/**
