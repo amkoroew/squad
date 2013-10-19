@@ -7,7 +7,10 @@ if (!defined('TYPO3_MODE')) {
 	'MFG.' . $_EXTKEY,
 	'Squad',
 	array(
-		'Squad' => 'list,show'
+		'Squad' => 'list, show',
+		'Member' => 'list, show',
+		'Question' => 'list, show',
+
 	),
 	// non-cacheable actions
 	array(
