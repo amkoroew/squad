@@ -69,4 +69,26 @@ class MemberTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 			$this->fixture->getName()
 		);
 	}
+	/**
+	 * @test
+	 */
+	public function getImageReturnsInitialValueForString() {
+		$this->assertSame(
+			NULL,
+			$this->fixture->getImage()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setImageForStringSetsImage() {
+		$this->fixture->setImage('Conceived at T3CON10');
+
+		$this->assertSame(
+			'Conceived at T3CON10',
+			$this->fixture->getImage()
+		);
+	}
 }
+?>
