@@ -108,14 +108,16 @@ $TCA['tx_squad_domain_model_squad'] = array(
 		'image' => array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:squad/Resources/Private/Language/locallang_db.xlf:tx_squad_domain_model_squad.image',
-			'config' => array(
-				'type' => 'group',
-				'internal_type' => 'file',
-				'uploadfolder' => 'uploads/tx_squad',
-				'show_thumbs' => 1,
-				'size' => 5,
-				'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
-				'disallowed' => '',
+			'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
+				'image',
+				array(
+					'appearance' => array(
+						'createNewRelationLinkTitle' => 'LLL:EXT:cms/locallang_ttc.xlf:images.addFileReference'
+					),
+					'minitems' => 0,
+					'maxitems' => 1,
+				),
+				$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
 			),
 		),
 		'roles' => array(
