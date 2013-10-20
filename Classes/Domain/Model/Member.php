@@ -42,6 +42,14 @@ class Member extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $name;
 
 	/**
+	 * image
+	 *
+	 * @var \string
+	 * @validate NotEmpty
+	 */
+	protected $image;
+
+	/**
 	 * Returns the name
 	 *
 	 * @return \string $name
@@ -58,6 +66,25 @@ class Member extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setName($name) {
 		$this->name = $name;
+	}
+
+	/**
+	 * Returns the image
+	 *
+	 * @return \string $image
+	 */
+	public function getImage() {
+		return $this->image;
+	}
+
+	/**
+	 * Sets the image
+	 *
+	 * @param \string $image
+	 * @return void
+	 */
+	public function setImage($image) {
+		$this->image = $image;
 	}
 
 }
