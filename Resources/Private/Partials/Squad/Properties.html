@@ -1,18 +1,3 @@
-<table class="tx-squad" >
-	<tr>
-		<td>
-			<f:translate key="tx_squad_domain_model_squad.name" />
-		</td>
-		<td>
-			{squad.name}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<f:translate key="tx_squad_domain_model_squad.image" />
-		</td>
-		<td>
-			{squad.image}
-		</td>
-	</tr>
-</table>
+<h3>{squad.name}</h3>
+
+<f:image src="{squad.image.originalResource.publicUrl}" alt="" />
