@@ -4,6 +4,9 @@
 <h1>Single View for Squad</h1>
 
 <f:flashMessages />
-<f:render partial="Squad/Properties" arguments="{squad:squad}" />
+<figure>
+	<f:image src="{squad.image.originalResource.publicUrl}" alt="{squad.image.originalResource.alternative}"/>
+	<figcaption>{squad.image.originalResource.description}</figcaption>
+</figure>
 <f:link.action action="list">Back to list</f:link.action><br />
 </f:section>
