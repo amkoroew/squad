@@ -8,7 +8,7 @@ if (!defined('TYPO3_MODE')) {
 	'Squad',
 	array(
 		'Squad' => 'list, show',
-		'Member' => 'list, show',
+		'Member' => 'show',
 
 	),
 	// non-cacheable actions
