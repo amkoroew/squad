@@ -9,7 +9,6 @@ if (!defined('TYPO3_MODE')) {
 	array(
 		'Squad' => 'list, show',
 		'Member' => 'list, show',
-		'Question' => 'list, show',
 
 	),
 	// non-cacheable actions
