@@ -164,11 +164,11 @@ $TCA['tx_squad_domain_model_question'] = array(
 	),
 );
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_squad_domain_model_memberquestion', 'EXT:squad/Resources/Private/Language/locallang_csh_tx_squad_domain_model_memberquestion.xlf');
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_squad_domain_model_memberquestion');
-$TCA['tx_squad_domain_model_memberquestion'] = array(
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_squad_domain_model_answer', 'EXT:squad/Resources/Private/Language/locallang_csh_tx_squad_domain_model_answer.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_squad_domain_model_answer');
+$TCA['tx_squad_domain_model_answer'] = array(
 	'ctrl' => array(
-		'title'	=> 'LLL:EXT:squad/Resources/Private/Language/locallang_db.xlf:tx_squad_domain_model_memberquestion',
+		'title'	=> 'LLL:EXT:squad/Resources/Private/Language/locallang_db.xlf:tx_squad_domain_model_answer',
 		'label' => 'answer',
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
@@ -190,7 +190,7 @@ $TCA['tx_squad_domain_model_memberquestion'] = array(
 			'endtime' => 'endtime',
 		),
 		'searchFields' => 'answer,member,question,',
-		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/MemberQuestion.php',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_squad_domain_model_memberquestion.gif'
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Answer.php',
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_squad_domain_model_answer.gif'
 	),
 );

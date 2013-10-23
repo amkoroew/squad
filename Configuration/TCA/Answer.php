@@ -3,13 +3,13 @@ if (!defined ('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-$TCA['tx_squad_domain_model_memberquestion'] = array(
-	'ctrl' => $TCA['tx_squad_domain_model_memberquestion']['ctrl'],
+$TCA['tx_squad_domain_model_answer'] = array(
+	'ctrl' => $TCA['tx_squad_domain_model_answer']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, answer, member, question',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, text, question',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, answer, member, question,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, text, question,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -38,8 +38,8 @@ $TCA['tx_squad_domain_model_memberquestion'] = array(
 				'items' => array(
 					array('', 0),
 				),
-				'foreign_table' => 'tx_squad_domain_model_memberquestion',
-				'foreign_table_where' => 'AND tx_squad_domain_model_memberquestion.pid=###CURRENT_PID### AND tx_squad_domain_model_memberquestion.sys_language_uid IN (-1,0)',
+				'foreign_table' => 'tx_squad_domain_model_answer',
+				'foreign_table_where' => 'AND tx_squad_domain_model_answer.pid=###CURRENT_PID### AND tx_squad_domain_model_answer.sys_language_uid IN (-1,0)',
 			),
 		),
 		'l10n_diffsource' => array(
@@ -96,33 +96,28 @@ $TCA['tx_squad_domain_model_memberquestion'] = array(
 				),
 			),
 		),
-		'answer' => array(
+		'text' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:squad/Resources/Private/Language/locallang_db.xlf:tx_squad_domain_model_memberquestion.answer',
+			'label' => 'LLL:EXT:squad/Resources/Private/Language/locallang_db.xlf:tx_squad_domain_model_answer.text',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
 				'eval' => 'trim,required'
 			),
 		),
-		'member' => array(
-			'exclude' => 0,
-			'label' => 'LLL:EXT:squad/Resources/Private/Language/locallang_db.xlf:tx_squad_domain_model_memberquestion.member',
-			'config' => array(
-				'type' => 'select',
-				'foreign_table' => 'tx_squad_domain_model_member',
-				'minitems' => 0,
-				'maxitems' => 1,
-			),
-		),
 		'question' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:squad/Resources/Private/Language/locallang_db.xlf:tx_squad_domain_model_memberquestion.question',
+			'label' => 'LLL:EXT:squad/Resources/Private/Language/locallang_db.xlf:tx_squad_domain_model_answer.question',
 			'config' => array(
 				'type' => 'select',
 				'foreign_table' => 'tx_squad_domain_model_question',
 				'minitems' => 0,
 				'maxitems' => 1,
+			),
+		),
+		'member' => array(
+			'config' => array(
+				'type' => 'passthrough',
 			),
 		),
 	),

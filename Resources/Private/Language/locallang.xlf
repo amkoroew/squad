@@ -44,16 +44,16 @@
 				<source>question</source>
 			</trans-unit>
 
-			<trans-unit id="tx_squad_domain_model_memberquestion">
-				<source>MemberQuestion</source>
+			<trans-unit id="tx_squad_domain_model_answer">
+				<source>Answer</source>
 			</trans-unit>
-			<trans-unit id="tx_squad_domain_model_memberquestion.answer">
+			<trans-unit id="tx_squad_domain_model_answer.answer">
 				<source>answer</source>
 			</trans-unit>
-			<trans-unit id="tx_squad_domain_model_memberquestion.member">
+			<trans-unit id="tx_squad_domain_model_answer.member">
 				<source>member</source>
 			</trans-unit>
-			<trans-unit id="tx_squad_domain_model_memberquestion.question">
+			<trans-unit id="tx_squad_domain_model_answer.question">
 				<source>question</source>
 			</trans-unit>
 

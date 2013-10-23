@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-10-23T14:37:51Z" product-name="squad">
+		<header/>
+		<body>
+
+			<trans-unit id="text.description">
+				<source>text</source>
+			</trans-unit>
+			<trans-unit id="question.description">
+				<source>question</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

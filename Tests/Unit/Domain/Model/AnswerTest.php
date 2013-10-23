@@ -26,7 +26,7 @@ namespace MFG\Squad\Tests;
  ***************************************************************/
 
 /**
- * Test case for class \MFG\Squad\Domain\Model\MemberQuestion.
+ * Test case for class \MFG\Squad\Domain\Model\Answer.
  *
  * @version $Id$
  * @copyright Copyright belongs to the respective authors
@@ -34,14 +34,14 @@ namespace MFG\Squad\Tests;
  *
  * @author Matthias Gugel <mail@matthias-gugel.de>
  */
-class MemberQuestionTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
+class AnswerTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
-	 * @var \MFG\Squad\Domain\Model\MemberQuestion
+	 * @var \MFG\Squad\Domain\Model\Answer
 	 */
 	protected $fixture;
 
 	public function setUp() {
-		$this->fixture = new \MFG\Squad\Domain\Model\MemberQuestion();
+		$this->fixture = new \MFG\Squad\Domain\Model\Answer();
 	}
 
 	public function tearDown() {
@@ -51,33 +51,24 @@ class MemberQuestionTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
 	 * @test
 	 */
-	public function getAnswerReturnsInitialValueForString() {
+	public function getTextReturnsInitialValueForString() {
 		$this->assertSame(
 			NULL,
-			$this->fixture->getAnswer()
+			$this->fixture->getText()
 		);
 	}
 
 	/**
 	 * @test
 	 */
-	public function setAnswerForStringSetsAnswer() {
-		$this->fixture->setAnswer('Conceived at T3CON10');
+	public function setTextForStringSetsText() {
+		$this->fixture->setText('Conceived at T3CON10');
 
 		$this->assertSame(
 			'Conceived at T3CON10',
-			$this->fixture->getAnswer()
+			$this->fixture->getText()
 		);
 	}
-	/**
-	 * @test
-	 */
-	public function getMemberReturnsInitialValueForMember() {	}
-
-	/**
-	 * @test
-	 */
-	public function setMemberForMemberSetsMember() {	}
 	/**
 	 * @test
 	 */

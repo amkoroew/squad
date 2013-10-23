@@ -31,22 +31,15 @@ namespace MFG\Squad\Domain\Model;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class MemberQuestion extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class Answer extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
-	 * answer
+	 * text
 	 *
 	 * @var \string
 	 * @validate NotEmpty
 	 */
-	protected $answer;
-
-	/**
-	 * member
-	 *
-	 * @var \MFG\Squad\Domain\Model\Member
-	 */
-	protected $member;
+	protected $text;
 
 	/**
 	 * question
@@ -56,47 +49,28 @@ class MemberQuestion extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $question;
 
 	/**
-	 * Returns the answer
+	 * Returns the text
 	 *
-	 * @return \string $answer
+	 * @return \string text
 	 */
-	public function getAnswer() {
-		return $this->answer;
+	public function getText() {
+		return $this->text;
 	}
 
 	/**
-	 * Sets the answer
+	 * Sets the text
 	 *
-	 * @param \string $answer
-	 * @return void
+	 * @param \string $text
+	 * @return \string text
 	 */
-	public function setAnswer($answer) {
-		$this->answer = $answer;
-	}
-
-	/**
-	 * Returns the member
-	 *
-	 * @return \MFG\Squad\Domain\Model\Member $member
-	 */
-	public function getMember() {
-		return $this->member;
-	}
-
-	/**
-	 * Sets the member
-	 *
-	 * @param \MFG\Squad\Domain\Model\Member $member
-	 * @return void
-	 */
-	public function setMember(\MFG\Squad\Domain\Model\Member $member) {
-		$this->member = $member;
+	public function setText($text) {
+		$this->text = $text;
 	}
 
 	/**
 	 * Returns the question
 	 *
-	 * @return \MFG\Squad\Domain\Model\Question $question
+	 * @return \MFG\Squad\Domain\Model\Question question
 	 */
 	public function getQuestion() {
 		return $this->question;
@@ -106,7 +80,7 @@ class MemberQuestion extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Sets the question
 	 *
 	 * @param \MFG\Squad\Domain\Model\Question $question
-	 * @return void
+	 * @return \MFG\Squad\Domain\Model\Question question
 	 */
 	public function setQuestion(\MFG\Squad\Domain\Model\Question $question) {
 		$this->question = $question;

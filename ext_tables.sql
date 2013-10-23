@@ -165,9 +165,9 @@ CREATE TABLE tx_squad_domain_model_question (
 );
 
 #
-# Table structure for table 'tx_squad_domain_model_memberquestion'
+# Table structure for table 'tx_squad_domain_model_answer'
 #
-CREATE TABLE tx_squad_domain_model_memberquestion (
+CREATE TABLE tx_squad_domain_model_answer (
 
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
