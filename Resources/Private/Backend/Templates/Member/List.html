@@ -8,6 +8,7 @@
 <table  class="tx_squad" >
 	<tr>
 		<th><f:translate key="tx_squad_domain_model_member.name" /></th>
+		<th><f:translate key="tx_squad_domain_model_member.image" /></th>
 		<th> </th>
 		<th> </th>
 	</tr>
@@ -15,6 +16,7 @@
 	<f:for each="{members}" as="member">
 		<tr>
 			<td><f:link.action action="show" arguments="{member : member}"> {member.name}</f:link.action></td>
+			<td><f:link.action action="show" arguments="{member : member}"> {member.image}</f:link.action></td>
 			<td><f:link.action action="edit" arguments="{member : member}">Edit</f:link.action></td>
 			<td><f:link.action action="delete" arguments="{member : member}">Delete</f:link.action></td>
 		</tr>
