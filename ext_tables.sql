@@ -93,6 +93,7 @@ CREATE TABLE tx_squad_domain_model_member (
 
 	name varchar(255) DEFAULT '' NOT NULL,
 	image text NOT NULL,
+	answers int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -172,7 +173,7 @@ CREATE TABLE tx_squad_domain_model_answer (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
-	member int(11) unsigned DEFAULT '0',
+	member int(11) unsigned DEFAULT '0' NOT NULL,
 
 	text varchar(255) DEFAULT '' NOT NULL,
 	question int(11) unsigned DEFAULT '0',

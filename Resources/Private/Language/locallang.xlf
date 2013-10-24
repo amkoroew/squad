@@ -36,6 +36,9 @@
 			<trans-unit id="tx_squad_domain_model_member.image">
 				<source>image</source>
 			</trans-unit>
+			<trans-unit id="tx_squad_domain_model_member.answers">
+				<source>answers</source>
+			</trans-unit>
 
 			<trans-unit id="tx_squad_domain_model_question">
 				<source>Question</source>
@@ -49,9 +52,6 @@
 			</trans-unit>
 			<trans-unit id="tx_squad_domain_model_answer.text">
 				<source>text</source>
-			</trans-unit>
-			<trans-unit id="tx_squad_domain_model_answer.member">
-				<source>member</source>
 			</trans-unit>
 			<trans-unit id="tx_squad_domain_model_answer.question">
 				<source>question</source>

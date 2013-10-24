@@ -90,5 +90,61 @@ class MemberTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 			$this->fixture->getImage()
 		);
 	}
+	/**
+	 * @test
+	 */
+	public function getAnswersReturnsInitialValueForAnswer() {
+		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->assertEquals(
+			$newObjectStorage,
+			$this->fixture->getAnswers()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setAnswersForObjectStorageContainingAnswerSetsAnswers() {
+		$answer = new \MFG\Squad\Domain\Model\Answer();
+		$objectStorageHoldingExactlyOneAnswers = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$objectStorageHoldingExactlyOneAnswers->attach($answer);
+		$this->fixture->setAnswers($objectStorageHoldingExactlyOneAnswers);
+
+		$this->assertSame(
+			$objectStorageHoldingExactlyOneAnswers,
+			$this->fixture->getAnswers()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function addAnswerToObjectStorageHoldingAnswers() {
+		$answer = new \MFG\Squad\Domain\Model\Answer();
+		$objectStorageHoldingExactlyOneAnswer = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$objectStorageHoldingExactlyOneAnswer->attach($answer);
+		$this->fixture->addAnswer($answer);
+
+		$this->assertEquals(
+			$objectStorageHoldingExactlyOneAnswer,
+			$this->fixture->getAnswers()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function removeAnswerFromObjectStorageHoldingAnswers() {
+		$answer = new \MFG\Squad\Domain\Model\Answer();
+		$localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$localObjectStorage->attach($answer);
+		$localObjectStorage->detach($answer);
+		$this->fixture->addAnswer($answer);
+		$this->fixture->removeAnswer($answer);
+
+		$this->assertEquals(
+			$localObjectStorage,
+			$this->fixture->getAnswers()
+		);
+	}
 }
-?>

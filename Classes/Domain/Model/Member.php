@@ -50,6 +50,37 @@ class Member extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $image;
 
 	/**
+	 * answers
+	 *
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MFG\Squad\Domain\Model\Answer>
+	 */
+	protected $answers;
+
+	/**
+	 * __construct
+	 *
+	 * @return Squad
+	 */
+	public function __construct() {
+		//Do not remove the next line: It would break the functionality
+		$this->initStorageObjects();
+	}
+
+	/**
+	 * Initializes all ObjectStorage properties.
+	 *
+	 * @return void
+	 */
+	protected function initStorageObjects() {
+		/**
+		 * Do not modify this method!
+		 * It will be rewritten on each save in the extension builder
+		 * You may modify the constructor of this class instead
+		 */
+		$this->answers = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+	}
+
+	/**
 	 * Returns the name
 	 *
 	 * @return \string $name
@@ -85,6 +116,45 @@ class Member extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setImage($image) {
 		$this->image = $image;
+	}
+
+	/**
+	 * Adds a Answer
+	 *
+	 * @param \MFG\Squad\Domain\Model\Answer $answer
+	 * @return void
+	 */
+	public function addAnswer(\MFG\Squad\Domain\Model\Answer $answer) {
+		$this->answers->attach($answer);
+	}
+
+	/**
+	 * Removes a Answer
+	 *
+	 * @param \MFG\Squad\Domain\Model\Answer $answerToRemove The Answer to be removed
+	 * @return void
+	 */
+	public function removeAnswer(\MFG\Squad\Domain\Model\Answer $answerToRemove) {
+		$this->answers->detach($answerToRemove);
+	}
+
+	/**
+	 * Returns the answers
+	 *
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MFG\Squad\Domain\Model\Answer> $answers
+	 */
+	public function getAnswers() {
+		return $this->answers;
+	}
+
+	/**
+	 * Sets the answers
+	 *
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MFG\Squad\Domain\Model\Answer> $answers
+	 * @return void
+	 */
+	public function setAnswers(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $answers) {
+		$this->answers = $answers;
 	}
 
 }
