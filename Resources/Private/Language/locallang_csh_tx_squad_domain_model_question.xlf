@@ -4,8 +4,8 @@
 		<header/>
 		<body>
 
-			<trans-unit id="question.description">
-				<source>question</source>
+			<trans-unit id="text.description">
+				<source>text</source>
 			</trans-unit>
 		</body>
 	</file>

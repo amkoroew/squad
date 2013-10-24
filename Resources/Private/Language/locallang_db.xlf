@@ -40,8 +40,8 @@
 			<trans-unit id="tx_squad_domain_model_question">
 				<source>Question</source>
 			</trans-unit>
-			<trans-unit id="tx_squad_domain_model_question.question">
-				<source>Question</source>
+			<trans-unit id="tx_squad_domain_model_question.text">
+				<source>Text</source>
 			</trans-unit>
 
 			<trans-unit id="tx_squad_domain_model_answer">

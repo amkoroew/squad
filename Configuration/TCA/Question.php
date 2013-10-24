@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_squad_domain_model_question'] = array(
 	'ctrl' => $TCA['tx_squad_domain_model_question']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, question',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, text',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, question,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, text,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -96,9 +96,9 @@ $TCA['tx_squad_domain_model_question'] = array(
 				),
 			),
 		),
-		'question' => array(
+		'text' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:squad/Resources/Private/Language/locallang_db.xlf:tx_squad_domain_model_question.question',
+			'label' => 'LLL:EXT:squad/Resources/Private/Language/locallang_db.xlf:tx_squad_domain_model_question.text',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,

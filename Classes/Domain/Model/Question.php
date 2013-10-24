@@ -34,30 +34,30 @@ namespace MFG\Squad\Domain\Model;
 class Question extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
-	 * question
+	 * text
 	 *
 	 * @var \string
 	 * @validate NotEmpty
 	 */
-	protected $question;
+	protected $text;
 
 	/**
-	 * Returns the question
+	 * Returns the text
 	 *
 	 * @return \string $question
 	 */
-	public function getQuestion() {
-		return $this->question;
+	public function getText() {
+		return $this->text;
 	}
 
 	/**
-	 * Sets the question
+	 * Sets the text
 	 *
-	 * @param \string $question
+	 * @param \string $text
 	 * @return void
 	 */
-	public function setQuestion($question) {
-		$this->question = $question;
+	public function setText($text) {
+		$this->text = $text;
 	}
 
 }

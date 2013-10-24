@@ -51,22 +51,22 @@ class QuestionTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
 	 * @test
 	 */
-	public function getQuestionReturnsInitialValueForString() {
+	public function getTextReturnsInitialValueForString() {
 		$this->assertSame(
 			NULL,
-			$this->fixture->getQuestion()
+			$this->fixture->getText()
 		);
 	}
 
 	/**
 	 * @test
 	 */
-	public function setQuestionForStringSetsQuestion() {
-		$this->fixture->setQuestion('Conceived at T3CON10');
+	public function setTextForStringSetsText() {
+		$this->fixture->setText('Conceived at T3CON10');
 
 		$this->assertSame(
 			'Conceived at T3CON10',
-			$this->fixture->getQuestion()
+			$this->fixture->getText()
 		);
 	}
 }

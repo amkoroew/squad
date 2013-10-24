@@ -7,14 +7,14 @@
 
 <table  class="tx_squad" >
 	<tr>
-		<th><f:translate key="tx_squad_domain_model_question.question" /></th>
+		<th><f:translate key="tx_squad_domain_model_question.text" /></th>
 		<th> </th>
 		<th> </th>
 	</tr>
 
 	<f:for each="{questions}" as="question">
 		<tr>
-			<td><f:link.action action="show" arguments="{question : question}"> {question.question}</f:link.action></td>
+			<td><f:link.action action="show" arguments="{question : question}"> {question.text}</f:link.action></td>
 			<td><f:link.action action="edit" arguments="{question : question}">Edit</f:link.action></td>
 			<td><f:link.action action="delete" arguments="{question : question}">Delete</f:link.action></td>
 		</tr>
