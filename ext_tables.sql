@@ -172,8 +172,9 @@ CREATE TABLE tx_squad_domain_model_answer (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
-	answer varchar(255) DEFAULT '' NOT NULL,
 	member int(11) unsigned DEFAULT '0',
+
+	text varchar(255) DEFAULT '' NOT NULL,
 	question int(11) unsigned DEFAULT '0',
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,

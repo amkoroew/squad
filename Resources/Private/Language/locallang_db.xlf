@@ -47,8 +47,8 @@
 			<trans-unit id="tx_squad_domain_model_answer">
 				<source>Answer</source>
 			</trans-unit>
-			<trans-unit id="tx_squad_domain_model_answer.answer">
-				<source>Answer</source>
+			<trans-unit id="tx_squad_domain_model_answer.text">
+				<source>Text</source>
 			</trans-unit>
 			<trans-unit id="tx_squad_domain_model_memberquestion.member">
 				<source>Member</source>

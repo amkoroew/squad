@@ -169,7 +169,7 @@ $TCA['tx_squad_domain_model_question'] = array(
 $TCA['tx_squad_domain_model_answer'] = array(
 	'ctrl' => array(
 		'title'	=> 'LLL:EXT:squad/Resources/Private/Language/locallang_db.xlf:tx_squad_domain_model_answer',
-		'label' => 'answer',
+		'label' => 'text',
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
@@ -189,7 +189,7 @@ $TCA['tx_squad_domain_model_answer'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'answer,member,question,',
+		'searchFields' => 'text,member,question,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Answer.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_squad_domain_model_answer.gif'
 	),
