@@ -4,6 +4,17 @@
 <h1>Single View for Member</h1>
 
 <f:flashMessages />
-<f:render partial="Member/Properties" arguments="{member:member}" />
+<h3>{member.name}</h3>
+
+<figure>
+	<f:image src="{member.image.originalResource.publicUrl}" alt="{member.image.originalResource.alternative}"/>
+	<figcaption>{member.image.originalResource.description}</figcaption>
+</figure>
+
+<f:for each="{member.answers}" as="answer">
+	<h3>{answer.question.text}</h3>
+
+	<p>{answer.text}</p>
+</f:for>
 <f:link.action action="list">Back to list</f:link.action><br />
 </f:section>
