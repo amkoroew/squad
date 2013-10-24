@@ -1,12 +1,42 @@
-<f:layout name="Default" />
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	 xmlns:f="http://typo3.org/ns/fluid/ViewHelpers">
+	<f:layout name="Default"/>
 
-<f:section name="main">
-<h1>Single View for Squad</h1>
+	<f:section name="main">
+		<h2>{squad.name}</h2>
 
-<f:flashMessages />
-<figure>
-	<f:image src="{squad.image.originalResource.publicUrl}" alt="{squad.image.originalResource.alternative}"/>
-	<figcaption>{squad.image.originalResource.description}</figcaption>
-</figure>
-<f:link.action action="list">Back to list</f:link.action><br />
-</f:section>
+		<f:flashMessages/>
+
+		<figure>
+			<f:image src="{squad.image.originalResource.publicUrl}" alt="{squad.image.originalResource.alternative}"/>
+			<figcaption>{squad.image.originalResource.description}</figcaption>
+		</figure>
+
+		<f:for each="{squad.roles}" as="role">
+			<h2>{role.name}</h2>
+			<ul>
+				<f:for each="{role.members}" as="member">
+					<li>
+						<f:link.action controller="Member" action="show" arguments="{member:member}">
+							<f:if condition="{member.image}">
+								<f:then>
+									<figure>
+										<f:image src="{member.image.originalResource.publicUrl}"
+												 alt="{member.image.originalResource.alternative}"/>
+										<figcaption>{member.name}</figcaption>
+									</figure>
+								</f:then>
+								<f:else>
+									{member.name}
+								</f:else>
+							</f:if>
+						</f:link.action>
+					</li>
+				</f:for>
+			</ul>
+		</f:for>
+
+		<f:link.action action="list">Back to list</f:link.action>
+		<br/>
+	</f:section>
+</div>
