@@ -22,8 +22,7 @@ if (TYPO3_MODE === 'BE') {
 		array(
 			'Squad' => 'list, show, new, create, delete, edit, update',
 			'Member' => 'list, show, new, create, delete, edit, update',
-			'Question' => 'list, show',
-
+			'Question' => 'list, show, new, create, delete, edit, update',
 		),
 		array(
 			'access' => 'user,group',
