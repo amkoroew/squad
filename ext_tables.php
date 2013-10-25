@@ -20,7 +20,7 @@ if (TYPO3_MODE === 'BE') {
 		'squadbackend',	// Submodule key
 		'',						// Position
 		array(
-			'Squad' => 'list, show',
+			'Squad' => 'list, show, new, create, delete, edit, update',
 			'Member' => 'list, show',
 			'Question' => 'list, show',
 
