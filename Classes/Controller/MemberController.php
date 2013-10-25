@@ -84,4 +84,27 @@ class MemberController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 		$this->redirect('list');
 	}
 
+	/**
+	 * action edit
+	 *
+	 * @param \MFG\Squad\Domain\Model\Member $member
+	 * @dontvalidate $member
+	 * @return void
+	 */
+	public function editAction(\MFG\Squad\Domain\Model\Member $member) {
+		$this->view->assign('member', $member);
+	}
+
+	/**
+	 * action update
+	 *
+	 * @param \MFG\Squad\Domain\Model\Member $member
+	 * @return void
+	 */
+	public function updateAction(\MFG\Squad\Domain\Model\Member $member) {
+		$this->memberRepository->update($member);
+		$this->flashMessageContainer->add('Your Member was updated.');
+		$this->redirect('list');
+	}
+
 }
