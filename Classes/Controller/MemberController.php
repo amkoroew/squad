@@ -61,4 +61,27 @@ class MemberController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 		$this->view->assign('member', $member);
 	}
 
+	/**
+	 * action new
+	 *
+	 * @param \MFG\Squad\Domain\Model\Member $newMember
+	 * @dontvalidate $newMember
+	 * @return void
+	 */
+	public function newAction(\MFG\Squad\Domain\Model\Member $newMember = NULL) {
+		$this->view->assign('newMember', $newMember);
+	}
+
+	/**
+	 * action create
+	 *
+	 * @param \MFG\Squad\Domain\Model\Member $newMember
+	 * @return void
+	 */
+	public function createAction(\MFG\Squad\Domain\Model\Member $newMember) {
+		$this->memberRepository->add($newMember);
+		$this->flashMessageContainer->add('Your new Member was created.');
+		$this->redirect('list');
+	}
+
 }
