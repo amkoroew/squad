@@ -61,4 +61,27 @@ class SquadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		$this->view->assign('squad', $squad);
 	}
 
+	/**
+	 * action new
+	 *
+	 * @param \MFG\Squad\Domain\Model\Squad $newSquad
+	 * @dontvalidate $newSquad
+	 * @return void
+	 */
+	public function newAction(\MFG\Squad\Domain\Model\Squad $newSquad = NULL) {
+		$this->view->assign('newSquad', $newSquad);
+	}
+
+	/**
+	 * action create
+	 *
+	 * @param \MFG\Squad\Domain\Model\Squad $newSquad
+	 * @return void
+	 */
+	public function createAction(\MFG\Squad\Domain\Model\Squad $newSquad) {
+		$this->squadRepository->add($newSquad);
+		$this->flashMessageContainer->add('Your new Squad was created.');
+		$this->redirect('list');
+	}
+
 }
