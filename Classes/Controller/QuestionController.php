@@ -106,4 +106,17 @@ class QuestionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 		$this->flashMessageContainer->add('Your Question was updated.');
 		$this->redirect('list');
 	}
+
+	/**
+	 * action delete
+	 *
+	 * @param \MFG\Squad\Domain\Model\Question $question
+	 * @return void
+	 */
+	public function deleteAction(\MFG\Squad\Domain\Model\Question $question) {
+		$this->questionRepository->remove($question);
+		$this->flashMessageContainer->add('Your Question was removed.');
+		$this->redirect('list');
+	}
+
 }
