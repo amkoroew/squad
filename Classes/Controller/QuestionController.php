@@ -84,4 +84,26 @@ class QuestionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 		$this->redirect('list');
 	}
 
+	/**
+	 * action edit
+	 *
+	 * @param \MFG\Squad\Domain\Model\Question $question
+	 * @dontvalidate $question
+	 * @return void
+	 */
+	public function editAction(\MFG\Squad\Domain\Model\Question $question) {
+		$this->view->assign('question', $question);
+	}
+
+	/**
+	 * action update
+	 *
+	 * @param \MFG\Squad\Domain\Model\Question $question
+	 * @return void
+	 */
+	public function updateAction(\MFG\Squad\Domain\Model\Question $question) {
+		$this->questionRepository->update($question);
+		$this->flashMessageContainer->add('Your Question was updated.');
+		$this->redirect('list');
+	}
 }
