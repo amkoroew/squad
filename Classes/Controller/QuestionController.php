@@ -61,4 +61,27 @@ class QuestionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 		$this->view->assign('question', $question);
 	}
 
+	/**
+	 * action new
+	 *
+	 * @param \MFG\Squad\Domain\Model\Question $newQuestion
+	 * @dontvalidate $newQuestion
+	 * @return void
+	 */
+	public function newAction(\MFG\Squad\Domain\Model\Question $newQuestion = NULL) {
+		$this->view->assign('newQuestion', $newQuestion);
+	}
+
+	/**
+	 * action create
+	 *
+	 * @param \MFG\Squad\Domain\Model\Question $newQuestion
+	 * @return void
+	 */
+	public function createAction(\MFG\Squad\Domain\Model\Question $newQuestion) {
+		$this->questionRepository->add($newQuestion);
+		$this->flashMessageContainer->add('Your new Question was created.');
+		$this->redirect('list');
+	}
+
 }
