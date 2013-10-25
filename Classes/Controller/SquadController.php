@@ -107,4 +107,16 @@ class SquadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		$this->redirect('list');
 	}
 
+	/**
+	 * action delete
+	 *
+	 * @param \MFG\Squad\Domain\Model\Squad $squad
+	 * @return void
+	 */
+	public function deleteAction(\MFG\Squad\Domain\Model\Squad $squad) {
+		$this->squadRepository->remove($squad);
+		$this->flashMessageContainer->add('Your Squad was removed.');
+		$this->redirect('list');
+	}
+
 }
