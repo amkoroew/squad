@@ -21,7 +21,7 @@ if (TYPO3_MODE === 'BE') {
 		'',						// Position
 		array(
 			'Squad' => 'list, show, new, create, delete, edit, update',
-			'Member' => 'list, show',
+			'Member' => 'list, show, new, create, delete, edit, update',
 			'Question' => 'list, show',
 
 		),
