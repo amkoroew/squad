@@ -107,4 +107,16 @@ class MemberController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 		$this->redirect('list');
 	}
 
+	/**
+	 * action delete
+	 *
+	 * @param \MFG\Squad\Domain\Model\Member $member
+	 * @return void
+	 */
+	public function deleteAction(\MFG\Squad\Domain\Model\Member $member) {
+		$this->memberRepository->remove($member);
+		$this->flashMessageContainer->add('Your Member was removed.');
+		$this->redirect('list');
+	}
+
 }
