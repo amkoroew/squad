@@ -7,7 +7,7 @@
 
 <f:render partial="FormErrors" />
 
-<f:form action="create"  name="newSquad" object="{newSquad}">
+<f:form action="create"  enctype="multipart/form-data"  name="newSquad" object="{newSquad}">
 <f:render partial="Squad/FormFields" />
 	<f:form.submit value="Create new" />
 </f:form>
