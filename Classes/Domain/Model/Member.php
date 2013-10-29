@@ -58,7 +58,7 @@ class Member extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * __construct
 	 *
-	 * @return Squad
+	 * @return Member
 	 */
 	public function __construct() {
 		//Do not remove the next line: It would break the functionality
