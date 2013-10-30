@@ -42,6 +42,14 @@ class MemberController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	protected $memberRepository;
 
 	/**
+	 * memberRepository
+	 *
+	 * @var \MFG\Squad\Domain\Repository\SquadRepository
+	 * @inject
+	 */
+	protected $squadRepository;
+
+	/**
 	 * questionRepository
 	 *
 	 * @var \MFG\Squad\Domain\Repository\QuestionRepository
@@ -78,6 +86,8 @@ class MemberController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 */
 	public function newAction(\MFG\Squad\Domain\Model\Member $newMember = NULL) {
 		$this->view->assign('newMember', $newMember);
+		$squads = $this->squadRepository->findAll();
+		$this->view->assign('squads', $squads);
 		$questions = $this->questionRepository->findAll();
 		$this->view->assign('questions', $questions);
 	}
@@ -95,11 +105,25 @@ class MemberController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * action create
 	 *
 	 * @param \MFG\Squad\Domain\Model\Member $newMember
+	 * @param \array $roles
 	 * @param \array $answers
 	 * @return void
 	 */
-	public function createAction(\MFG\Squad\Domain\Model\Member $newMember, array $answers = array()) {
+	public function createAction(\MFG\Squad\Domain\Model\Member $newMember, array $roles = array(), array $answers = array()) {
 		$propertyMapper = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Property\PropertyMapper');
+
+		foreach ($roles as $role) {
+			list($squadUid, $roleUid) = explode("-", $role);
+			$squadUid = (int)$squadUid;
+			$roleUid = (int)$roleUid;
+			$squad = $this->squadRepository->findByUid($squadUid);
+			foreach ($squad->getRoles() as $tmpRole) {
+				if ($tmpRole->getUid() === $roleUid) {
+					$tmpRole->addMember($newMember);
+					$this->squadRepository->update($squad);
+				}
+			}
+		}
 
 		foreach ($answers['text'] as $key => $text) {
 			if (!empty($text)) {

@@ -8,7 +8,20 @@
 <f:render partial="FormErrors" />
 
 <f:form action="create" enctype="multipart/form-data" name="newMember" object="{newMember}">
-<f:render partial="Member/FormFields" />
+	<h3>Member</h3>
+	<f:render partial="Member/FormFields" />
+	<h3>Roles</h3>
+	<select name="tx_squad_web_squadsquadbackend[roles][]" multiple>
+		<f:for each="{squads}" as="squad">
+			<f:if condition="{squad.roles}" >
+				<option disabled>{squad.name}</option>
+				<f:for each="{squad.roles}" as="role">
+					<option value="{squad.uid}-{role.uid}"> - {role.name}</option>
+				</f:for>
+			</f:if>
+		</f:for>
+	</select>
+	<h3>Answers</h3>
 	<f:for each="{questions}" as="question" iteration="iterator">
 		<label for="answerText{iterator.index}">{question.text}</label><br/>
 		<input type="text" id="answerText{iterator.index}" name="tx_squad_web_squadsquadbackend[answers][text][]"/><br/>
