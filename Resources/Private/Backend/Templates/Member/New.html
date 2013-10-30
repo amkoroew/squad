@@ -7,7 +7,7 @@
 
 <f:render partial="FormErrors" />
 
-<f:form action="create"  name="newMember" object="{newMember}">
+<f:form action="create" enctype="multipart/form-data" name="newMember" object="{newMember}">
 <f:render partial="Member/FormFields" />
 	<f:for each="{questions}" as="question" iteration="iterator">
 		<label for="answerText{iterator.index}">{question.text}</label><br/>
