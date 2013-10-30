@@ -42,6 +42,14 @@ class MemberController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	protected $memberRepository;
 
 	/**
+	 * questionRepository
+	 *
+	 * @var \MFG\Squad\Domain\Repository\QuestionRepository
+	 * @inject
+	 */
+	protected $questionRepository;
+
+	/**
 	 * action list
 	 *
 	 * @return void
@@ -70,15 +78,28 @@ class MemberController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 */
 	public function newAction(\MFG\Squad\Domain\Model\Member $newMember = NULL) {
 		$this->view->assign('newMember', $newMember);
+		$questions = $this->questionRepository->findAll();
+		$this->view->assign('questions', $questions);
 	}
 
 	/**
 	 * action create
 	 *
 	 * @param \MFG\Squad\Domain\Model\Member $newMember
+	 * @param \array $answers
 	 * @return void
 	 */
-	public function createAction(\MFG\Squad\Domain\Model\Member $newMember) {
+	public function createAction(\MFG\Squad\Domain\Model\Member $newMember, array $answers = array()) {
+		$propertyMapper = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Property\PropertyMapper');
+
+		foreach ($answers['text'] as $key => $text) {
+			if (!empty($text)) {
+				$question = $answers['question'][$key];
+				$answer = $propertyMapper->convert(array('text' => $text, 'question' => $question), '\MFG\Squad\Domain\Model\Answer');
+				$newMember->addAnswer($answer);
+			}
+		}
+
 		$this->memberRepository->add($newMember);
 		$this->flashMessageContainer->add('Your new Member was created.');
 		$this->redirect('list');

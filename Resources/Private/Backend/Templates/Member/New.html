@@ -9,6 +9,11 @@
 
 <f:form action="create"  name="newMember" object="{newMember}">
 <f:render partial="Member/FormFields" />
+	<f:for each="{questions}" as="question" iteration="iterator">
+		<label for="answerText{iterator.index}">{question.text}</label><br/>
+		<input type="text" id="answerText{iterator.index}" name="tx_squad_web_squadsquadbackend[answers][text][]"/><br/>
+		<input type="hidden" value="{question.uid}" name="tx_squad_web_squadsquadbackend[answers][question][]"/>
+	</f:for>
 	<f:form.submit value="Create new" />
 </f:form>
 </f:section>
