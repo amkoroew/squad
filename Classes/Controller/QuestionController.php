@@ -64,23 +64,47 @@ class QuestionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	/**
 	 * action new
 	 *
-	 * @param \MFG\Squad\Domain\Model\Question $newQuestion
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MFG\Squad\Domain\Model\Question> $newQuestions
 	 * @dontvalidate $newQuestion
 	 * @return void
 	 */
-	public function newAction(\MFG\Squad\Domain\Model\Question $newQuestion = NULL) {
-		$this->view->assign('newQuestion', $newQuestion);
+	public function newAction(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $newQuestions = NULL) {
+		$this->view->assign('newQuestions', $newQuestions);
+	}
+
+	/**
+	 * initialize create action
+	 */
+	public function initializeCreateAction() {
+		if ($this->arguments->hasArgument('newQuestions')) {
+
+			$questions = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+
+			$questionTexts = explode("\n", $this->request->getArgument('newQuestions')['text']);
+			$questionTexts = array_map('trim', $questionTexts);
+			$questionTexts = array_filter($questionTexts);
+
+			foreach ($questionTexts as $questionText) {
+				$question = new \MFG\Squad\Domain\Model\Question();
+				$question->setText($questionText);
+				$questions->attach($question);
+			}
+
+			$this->request->setArgument('newQuestions', $questions);
+		}
 	}
 
 	/**
 	 * action create
 	 *
-	 * @param \MFG\Squad\Domain\Model\Question $newQuestion
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MFG\Squad\Domain\Model\Question> $newQuestions
 	 * @return void
 	 */
-	public function createAction(\MFG\Squad\Domain\Model\Question $newQuestion) {
-		$this->questionRepository->add($newQuestion);
-		$this->flashMessageContainer->add('Your new Question was created.');
+	public function createAction(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $newQuestions) {
+		foreach ($newQuestions as $newQuestion) {
+			$this->questionRepository->add($newQuestion);
+		}
+		$this->flashMessageContainer->add('Your new Questions were created.');
 		$this->redirect('list');
 	}
 
