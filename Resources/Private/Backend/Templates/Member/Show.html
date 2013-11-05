@@ -4,7 +4,24 @@
 <h1>Single View for Member</h1>
 
 <f:flashMessages />
-<f:render partial="Member/Properties" arguments="{member:member}" />
+	<table class="tx-squad">
+		<tr>
+			<td>
+				<f:translate key="tx_squad_domain_model_member.name"/>
+			</td>
+			<td>
+				{member.name}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<f:translate key="tx_squad_domain_model_member.image"/>
+			</td>
+			<td>
+				{member.image}
+			</td>
+		</tr>
+	</table>
 <f:link.action action="list">Back to list</f:link.action><br />
 <f:link.action action="create">New Member</f:link.action>
 </f:section>

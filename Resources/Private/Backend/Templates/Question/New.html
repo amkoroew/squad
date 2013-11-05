@@ -8,7 +8,12 @@
 <f:render partial="FormErrors" />
 
 <f:form action="create"  name="newQuestions" object="{newQuestions}">
-<f:render partial="Question/FormFields" />
+	<label for="question">
+		<f:translate key="tx_squad_domain_model_question.text"/>
+		<span class="required">(required)</span>
+	</label><br/>
+	<f:form.textarea property="text"/>
+	<br/>
 	<f:form.submit value="Create new" />
 </f:form>
 </f:section>

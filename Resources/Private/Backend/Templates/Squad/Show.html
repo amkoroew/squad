@@ -4,7 +4,24 @@
 <h1>Single View for Squad</h1>
 
 <f:flashMessages />
-<f:render partial="Squad/Properties" arguments="{squad:squad}" />
+	<table class="tx-squad">
+		<tr>
+			<td>
+				<f:translate key="tx_squad_domain_model_squad.name"/>
+			</td>
+			<td>
+				{squad.name}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<f:translate key="tx_squad_domain_model_squad.image"/>
+			</td>
+			<td>
+				{squad.image}
+			</td>
+		</tr>
+	</table>
 <f:link.action action="list">Back to list</f:link.action><br />
 <f:link.action action="create">New Squad</f:link.action>
 </f:section>

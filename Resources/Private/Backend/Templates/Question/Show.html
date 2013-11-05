@@ -4,7 +4,16 @@
 <h1>Single View for Question</h1>
 
 <f:flashMessages />
-<f:render partial="Question/Properties" arguments="{question:question}" />
+	<table class="tx-squad">
+		<tr>
+			<td>
+				<f:translate key="tx_squad_domain_model_question.text"/>
+			</td>
+			<td>
+				{question.text}
+			</td>
+		</tr>
+	</table>
 <f:link.action action="list">Back to list</f:link.action><br />
 <f:link.action action="create">New Question</f:link.action>
 </f:section>
