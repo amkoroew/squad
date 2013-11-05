@@ -14,6 +14,13 @@
 	</label><br/>
 	<f:form.textfield property="name"/>
 	<br/>
+	<f:if condition="{squad.image}">
+		<figure>
+			<f:image src="{squad.image.originalResource.publicUrl}"
+					 alt="{squad.image.originalResource.alternative}"/>
+			<figcaption>{squad.image.originalResource.description}</figcaption>
+		</figure>
+	</f:if>
 	<label for="image">
 		<f:translate key="tx_squad_domain_model_squad.image"/>
 	</label><br/>
