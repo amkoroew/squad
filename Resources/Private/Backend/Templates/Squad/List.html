@@ -16,7 +16,17 @@
 	<f:for each="{squads}" as="squad">
 		<tr>
 			<td><f:link.action action="show" arguments="{squad : squad}"> {squad.name}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{squad : squad}"> {squad.image}</f:link.action></td>
+			<td>
+				<f:link.action action="show" arguments="{squad : squad}">
+					<f:if condition="{squad.image}">
+						<figure>
+							<f:image src="{squad.image.originalResource.publicUrl}"
+									 alt="{squad.image.originalResource.alternative}"/>
+							<figcaption>{squad.image.originalResource.description}</figcaption>
+						</figure>
+					</f:if>
+				</f:link.action>
+			</td>
 			<td><f:link.action action="edit" arguments="{squad : squad}">Edit</f:link.action></td>
 			<td><f:link.action action="delete" arguments="{squad : squad}">Delete</f:link.action></td>
 		</tr>
