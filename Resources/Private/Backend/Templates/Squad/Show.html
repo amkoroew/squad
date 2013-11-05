@@ -4,24 +4,37 @@
 <h1>Single View for Squad</h1>
 
 <f:flashMessages />
-	<table class="tx-squad">
-		<tr>
-			<td>
-				<f:translate key="tx_squad_domain_model_squad.name"/>
-			</td>
-			<td>
-				{squad.name}
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<f:translate key="tx_squad_domain_model_squad.image"/>
-			</td>
-			<td>
-				{squad.image}
-			</td>
-		</tr>
-	</table>
+	<f:if condition="{squad.image}">
+		<figure>
+			<f:image src="{squad.image.originalResource.publicUrl}" alt="{squad.image.originalResource.alternative}"/>
+			<figcaption>{squad.image.originalResource.description}</figcaption>
+		</figure>
+	</f:if>
+	<f:for each="{squad.roles}" as="role">
+		<h2>{role.name}</h2>
+		<ul>
+			<f:for each="{role.members}" as="member">
+				<li>
+					<f:link.action controller="Member" action="show" arguments="{member:member}">
+						<f:if condition="{member.image}">
+							<f:then>
+								<figure>
+									<f:image src="{member.image.originalResource.publicUrl}"
+											 alt="{member.image.originalResource.alternative}"/>
+									<figcaption>{member.name}</figcaption>
+								</figure>
+							</f:then>
+							<f:else>
+								{member.name}
+							</f:else>
+						</f:if>
+					</f:link.action>
+					<f:link.action action="edit" controller="Member" arguments="{member:member}">Edit</f:link.action>
+					<f:link.action action="delete" controller="Member" arguments="{member:member}">Delete</f:link.action>
+				</li>
+			</f:for>
+		</ul>
+	</f:for>
 <f:link.action action="list">Back to list</f:link.action><br />
 <f:link.action action="create">New Squad</f:link.action>
 </f:section>
