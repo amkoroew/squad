@@ -1,24 +1,28 @@
-<f:layout name="Default" />
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	 xmlns:f="http://typo3.org/ns/fluid/ViewHelpers">
 
-<f:section name="main">
-<h1>Single View for Member</h1>
+	<f:layout name="Default" />
 
-<h3>{member.name}</h3>
+	<f:section name="main">
+	<h1>Single View for Member</h1>
 
-<figure>
-	<f:image src="{member.image.originalResource.publicUrl}" alt="{member.image.originalResource.alternative}"/>
-	<figcaption>{member.image.originalResource.description}</figcaption>
-</figure>
+	<h3>{member.name}</h3>
 
-<table>
-	<tbody>
-	<f:for each="{member.answers}" as="answer">
-		<tr>
-			<td>{answer.question.text}</td>
-			<td>{answer.text}</td>
-		</tr>
-	</f:for>
-	</tbody>
-</table>
+	<figure>
+		<f:image src="{member.image.originalResource.publicUrl}" alt="{member.image.originalResource.alternative}"/>
+		<figcaption>{member.image.originalResource.description}</figcaption>
+	</figure>
 
-</f:section>
+	<table>
+		<tbody>
+		<f:for each="{member.answers}" as="answer">
+			<tr>
+				<td>{answer.question.text}</td>
+				<td>{answer.text}</td>
+			</tr>
+		</f:for>
+		</tbody>
+	</table>
+
+	</f:section>
+</div>
