@@ -26,6 +26,13 @@
 	</label><br/>
 	<f:form.upload property="image"/>
 	<br/>
+	<label for="roles">
+		<f:translate key="tx_squad_domain_model_squad.roles"/>
+	</label><br/>
+	<f:for each="{squad.roles}" as="role">
+		<f:form.textfield name="roles[{role.uid}][name]" value="{role.name}"/>
+		<br/>
+	</f:for>
 	<f:form.submit value="Save" />
 </f:form>
 </f:section>

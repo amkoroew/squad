@@ -156,6 +156,30 @@ class SquadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	}
 
 	/**
+	 * initialize update action
+	 */
+	public function initializeUpdateAction() {
+		if ($this->arguments->hasArgument('squad')) {
+			$squad = $this->arguments->getArgument('squad');
+			$propertyMappingConfiguration = $squad->getPropertyMappingConfiguration();
+			$propertyMappingConfiguration->allowProperties('roles');
+
+			$propertyMapper = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Property\PropertyMapper');
+
+			if($this->request->hasArgument('roles')) {
+				$roleUids = $this->request->getArgument('roles');
+				foreach($roleUids as $roleUid => $data) {
+					$input = array(
+						'__identity' => (string)$roleUid,
+						'name' => trim($data['name']),
+					);
+					$propertyMapper->convert($input, '\MFG\Squad\Domain\Model\Role');
+				}
+			}
+		}
+	}
+
+	/**
 	 * action update
 	 *
 	 * @param \MFG\Squad\Domain\Model\Squad $squad
