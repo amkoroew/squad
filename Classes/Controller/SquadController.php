@@ -78,6 +78,22 @@ class SquadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	public function initializeCreateAction() {
 		if ($this->arguments->hasArgument('newSquad')) {
 			$this->arguments->getArgument('newSquad')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
+
+			$roles =  \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Persistence\ObjectStorage');
+
+			$newSquad = $this->request->getArgument('newSquad');
+			$roleNames = explode(',', $newSquad['roles']);
+			$roleNames = array_map('trim', $roleNames);
+			$roleNames = array_filter($roleNames);
+
+			foreach($roleNames as $roleName) {
+				$role = new \MFG\Squad\Domain\Model\Role();
+				$role->setName($roleName);
+				$roles->attach($role);
+			}
+			$newSquad['roles'] = $roles;
+
+			$this->request->setArgument('newSquad', $newSquad);
 		}
 	}
 
