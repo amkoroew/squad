@@ -75,7 +75,7 @@ class SquadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	/**
 	 * initialize create action
 	 */
-	public function initializeAction() {
+	public function initializeCreateAction() {
 		if ($this->arguments->hasArgument('newSquad')) {
 			$this->arguments->getArgument('newSquad')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
 		}
