@@ -25,7 +25,7 @@
 			<f:if condition="{squad.roles}" >
 				<option disabled>{squad.name}</option>
 				<f:for each="{squad.roles}" as="role">
-					<option value="{squad.uid}-{role.uid}"> - {role.name}</option>
+					<option value="{role.uid}"> - {role.name}</option>
 				</f:for>
 			</f:if>
 		</f:for>
