@@ -8,6 +8,7 @@
 <f:render partial="FormErrors" />
 
 <f:form action="update" enctype="multipart/form-data" name="member" object="{member}" >
+	<h3>Member</h3>
 	<label for="name">
 		<f:translate key="tx_squad_domain_model_member.name"/>
 		<span class="required">(required)</span></label><br/>
@@ -18,6 +19,30 @@
 	</label><br/>
 	<f:form.upload property="image"/>
 	<br/>
+	<h3>Roles</h3>
+	<select multiple="true" size="10" name="tx_squad_web_squadsquadbackend[roles][]">
+		<f:for each="{squads}" as="squad">
+			<f:if condition="{squad.roles}">
+				<option disabled>{squad.name}</option>
+				<f:for each="{squad.roles}" as="role">
+					<option value="{role.uid}"
+					<f:for each="{role.members}" as="roleMember">
+						<f:if condition="{roleMember.uid} = {member.uid}">
+							selected="selected"
+						</f:if>
+					</f:for>
+					> - {role.name}</option>
+				</f:for>
+			</f:if>
+		</f:for>
+	</select>
+	<h3>Answers</h3>
+	<f:for each="{questions}" as="question" iteration="iterator">
+		<label for="answerText{iterator.index}">{question.text}</label><br/>
+		<input type="text" id="answerText{iterator.index}"
+			   name="tx_squad_web_squadsquadbackend[answers][text][]"/><br/>
+		<input type="hidden" value="{question.uid}" name="tx_squad_web_squadsquadbackend[answers][question][]"/>
+	</f:for>
 	<f:form.submit value="Save" />
 </f:form>
 </f:section>

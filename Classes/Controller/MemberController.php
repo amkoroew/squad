@@ -220,6 +220,10 @@ class MemberController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 */
 	public function editAction(\MFG\Squad\Domain\Model\Member $member) {
 		$this->view->assign('member', $member);
+		$squads = $this->squadRepository->findAll();
+		$this->view->assign('squads', $squads);
+		$questions = $this->questionRepository->findAll();
+		$this->view->assign('questions', $questions);
 	}
 
 	/**
