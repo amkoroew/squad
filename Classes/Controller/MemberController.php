@@ -97,7 +97,31 @@ class MemberController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 */
 	public function initializeAction() {
 		if ($this->arguments->hasArgument('newMember')) {
-			$this->arguments->getArgument('newMember')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
+			$newMember = $this->arguments->getArgument('newMember');
+			$propertyMapper = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Property\PropertyMapper');
+			$answers = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Persistence\ObjectStorage');
+
+			$propertyMappingConfiguration = $newMember->getPropertyMappingConfiguration();
+			$propertyMappingConfiguration->setTargetTypeForSubProperty('image', 'array');
+			$propertyMappingConfiguration->allowProperties('answers');
+
+			if ($this->arguments->hasArgument('newMember')) {
+				$newAnswers = $this->request->getArgument('answers');
+				$answerTexts = $newAnswers['text'];
+				$answerTexts = array_map('trim', $answerTexts);
+				$answerTexts = array_filter($answerTexts);
+				$questions = $newAnswers['question'];
+
+				foreach ($answerTexts as $key => $text) {
+					$question = $questions[$key];
+					$answer = $propertyMapper->convert(array('text' => $text, 'question' => $question), '\MFG\Squad\Domain\Model\Answer');
+					$answers->attach($answer);
+				}
+			}
+
+			$newMember = $this->request->getArgument('newMember');
+			$newMember['answers'] = $answers;
+			$this->request->setArgument('newMember', $newMember);
 		}
 	}
 
@@ -105,10 +129,9 @@ class MemberController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * action create
 	 *
 	 * @param \MFG\Squad\Domain\Model\Member $newMember
-	 * @param \array $answers
 	 * @return void
 	 */
-	public function createAction(\MFG\Squad\Domain\Model\Member $newMember, array $answers = array()) {
+	public function createAction(\MFG\Squad\Domain\Model\Member $newMember) {
 		$propertyMapper = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Property\PropertyMapper');
 
 		if ($this->arguments->hasArgument('newMember')) {
@@ -124,14 +147,6 @@ class MemberController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 						}
 					}
 				}
-			}
-		}
-
-		foreach ($answers['text'] as $key => $text) {
-			if (!empty($text)) {
-				$question = $answers['question'][$key];
-				$answer = $propertyMapper->convert(array('text' => $text, 'question' => $question), '\MFG\Squad\Domain\Model\Answer');
-				$newMember->addAnswer($answer);
 			}
 		}
 
