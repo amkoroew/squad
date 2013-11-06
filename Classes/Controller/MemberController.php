@@ -95,7 +95,7 @@ class MemberController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	/**
 	 * initialize create action
 	 */
-	public function initializeAction() {
+	public function initializeCreateAction() {
 		if ($this->arguments->hasArgument('newMember')) {
 			$newMember = $this->arguments->getArgument('newMember');
 			$propertyMapper = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Property\PropertyMapper');
