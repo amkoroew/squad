@@ -94,51 +94,56 @@ class SquadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		$imageError = $newSquad->getImage()['error'];
 		$imageSize = $newSquad->getImage()['size'];
 
-		$storageRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\Resource\StorageRepository');
-		$storage = $storageRepository->findByUid(1);
-		$fileObject = $storage->addFile($imageTmpName, $storage->getRootLevelFolder(), $imageName);
+		if ($imageError === UPLOAD_ERR_OK) {
+			$storageRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\Resource\StorageRepository');
+			$storage = $storageRepository->findByUid(1);
+			$fileObject = $storage->addFile($imageTmpName, $storage->getRootLevelFolder(), $imageName);
 
-		$fileObjectIdentifier = $fileObject->getIdentifier();
+			$fileObjectIdentifier = $fileObject->getIdentifier();
 
-		$newSquad->setImage(basename($fileObjectIdentifier));
+			$newSquad->setImage(basename($fileObjectIdentifier));
 
-		$this->squadRepository->add($newSquad);
+			$this->squadRepository->add($newSquad);
 
-		$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager');
-		$persistenceManager->persistAll();
+			$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager');
+			$persistenceManager->persistAll();
 
-		$newSquadUid = $newSquad->getUid();
+			$newSquadUid = $newSquad->getUid();
 
-		$newSysFields = array(
-			'pid' => 0,
-			'identifier' => $fileObjectIdentifier,
-			'mime_type' => $imageType,
-			'name' => $fileObjectIdentifier,
-			'size' => $imageSize,
-			'storage' => 1,
-		);
+			$newSysFields = array(
+				'pid' => 0,
+				'identifier' => $fileObjectIdentifier,
+				'mime_type' => $imageType,
+				'name' => $fileObjectIdentifier,
+				'size' => $imageSize,
+				'storage' => 1,
+			);
 
-		$newSysRes = $GLOBALS['TYPO3_DB']->exec_INSERTquery('sys_file', $newSysFields);
-		$uid_local = $GLOBALS['TYPO3_DB']->sql_insert_id($newSysRes);
+			$newSysRes = $GLOBALS['TYPO3_DB']->exec_INSERTquery('sys_file', $newSysFields);
+			$uid_local = $GLOBALS['TYPO3_DB']->sql_insert_id($newSysRes);
 
-		$data = array();
-		$data['sys_file_reference'][$newSquad->getImage()] = array(
-			'uid_local' => $uid_local,
-			'uid_foreign' => $newSquadUid,
-			'tablenames' => 'tx_squad_domain_model_squad',
-			'fieldname' => 'image',
-			'pid' => 69, // parent id of the parent page <-- TODO: Remove constant value!
-			'table_local' => 'sys_file',
-			'crdate' => $GLOBALS['EXEC_TIME'],
-			'tstamp' => $GLOBALS['EXEC_TIME']
-		);
+			$data = array();
+			$data['sys_file_reference'][$newSquad->getImage()] = array(
+				'uid_local' => $uid_local,
+				'uid_foreign' => $newSquadUid,
+				'tablenames' => 'tx_squad_domain_model_squad',
+				'fieldname' => 'image',
+				'pid' => 69, // parent id of the parent page <-- TODO: Remove constant value!
+				'table_local' => 'sys_file',
+				'crdate' => $GLOBALS['EXEC_TIME'],
+				'tstamp' => $GLOBALS['EXEC_TIME']
+			);
 
-		$tce = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\DataHandling\DataHandler'); // create TCE instance
-		$tce->start($data, array(), $new_BE_USER);
-		$tce->process_datamap();
-		/*if ($tce->errorLog) $content .= 'TCE->errorLog:' . t3lib_utility_Debug::viewArray($tce->errorLog);
-		else $content .= 'image changed <br>' . t3lib_utility_Debug::viewArray($data);
-		*/
+			$tce = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\DataHandling\DataHandler'); // create TCE instance
+			$tce->start($data, array(), $new_BE_USER);
+			$tce->process_datamap();
+			/*if ($tce->errorLog) $content .= 'TCE->errorLog:' . t3lib_utility_Debug::viewArray($tce->errorLog);
+			else $content .= 'image changed <br>' . t3lib_utility_Debug::viewArray($data);
+			*/
+		} else {
+			$newSquad->setImage(NULL);
+			$this->squadRepository->add($newSquad);
+		}
 
 		$this->flashMessageContainer->add('Your new Squad was created.');
 		$this->redirect('list');
