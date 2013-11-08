@@ -181,6 +181,7 @@ class SquadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 			$localUid = \MFG\Squad\Utility\FalUtility::insertFile($file, 1, $fileObjectIdentifier);
 
+			\MFG\Squad\Utility\FalUtility::deleteOldFileReference($foreignUid);
 			\MFG\Squad\Utility\FalUtility::insertFileReference($localUid, $foreignUid, 'tx_squad_domain_model_squad', 'image', $fileObjectIdentifier, 69);
 		} else {
 			$propertyMapper = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Property\PropertyMapper');

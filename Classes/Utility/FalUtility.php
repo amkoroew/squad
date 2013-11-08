@@ -104,4 +104,14 @@ class FalUtility {
 		$tce->start($data, array(), $new_BE_USER);
 		$tce->process_datamap();
 	}
+
+	/**
+	 * Delete a FAL file record from table sys_file_reference
+	 *
+	 * @param int $foreignUid
+	 * @return void
+	 */
+	public static function deleteOldFileReference($foreignUid) {
+		$GLOBALS['TYPO3_DB']->exec_UPDATEquery('sys_file_reference', 'uid_foreign=' . $foreignUid, array('deleted' => 1));
+	}
 }
