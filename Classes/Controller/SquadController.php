@@ -104,58 +104,19 @@ class SquadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 * @return void
 	 */
 	public function createAction(\MFG\Squad\Domain\Model\Squad $newSquad) {
-		$imageName = $newSquad->getImage()['name'];
-		$imageType = $newSquad->getImage()['type'];
-		$imageTmpName = $newSquad->getImage()['tmp_name'];
-		$imageError = $newSquad->getImage()['error'];
-		$imageSize = $newSquad->getImage()['size'];
+		$file = $newSquad->getImage();
+		$fileObjectIdentifier = \MFG\Squad\Utility\FalUtility::uploadFile($file, 1);
 
-		if ($imageError === UPLOAD_ERR_OK) {
-			$storageRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\Resource\StorageRepository');
-			$storage = $storageRepository->findByUid(1);
-			$fileObject = $storage->addFile($imageTmpName, $storage->getRootLevelFolder(), $imageName);
-
-			$fileObjectIdentifier = $fileObject->getIdentifier();
-
+		if ($fileObjectIdentifier !== NULL) {
 			$newSquad->setImage(basename($fileObjectIdentifier));
-
 			$this->squadRepository->add($newSquad);
-
 			$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager');
 			$persistenceManager->persistAll();
+			$foreignUid = $newSquad->getUid();
 
-			$newSquadUid = $newSquad->getUid();
+			$localUid = \MFG\Squad\Utility\FalUtility::insertFile($file, 1, $fileObjectIdentifier);
 
-			$newSysFields = array(
-				'pid' => 0,
-				'identifier' => $fileObjectIdentifier,
-				'mime_type' => $imageType,
-				'name' => $fileObjectIdentifier,
-				'size' => $imageSize,
-				'storage' => 1,
-			);
-
-			$newSysRes = $GLOBALS['TYPO3_DB']->exec_INSERTquery('sys_file', $newSysFields);
-			$uid_local = $GLOBALS['TYPO3_DB']->sql_insert_id($newSysRes);
-
-			$data = array();
-			$data['sys_file_reference'][$newSquad->getImage()] = array(
-				'uid_local' => $uid_local,
-				'uid_foreign' => $newSquadUid,
-				'tablenames' => 'tx_squad_domain_model_squad',
-				'fieldname' => 'image',
-				'pid' => 69, // parent id of the parent page <-- TODO: Remove constant value!
-				'table_local' => 'sys_file',
-				'crdate' => $GLOBALS['EXEC_TIME'],
-				'tstamp' => $GLOBALS['EXEC_TIME']
-			);
-
-			$tce = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\DataHandling\DataHandler'); // create TCE instance
-			$tce->start($data, array(), $new_BE_USER);
-			$tce->process_datamap();
-			/*if ($tce->errorLog) $content .= 'TCE->errorLog:' . t3lib_utility_Debug::viewArray($tce->errorLog);
-			else $content .= 'image changed <br>' . t3lib_utility_Debug::viewArray($data);
-			*/
+			\MFG\Squad\Utility\FalUtility::insertFileReference($localUid, $foreignUid, 'tx_squad_domain_model_squad', 'image', $fileObjectIdentifier, 69);
 		} else {
 			$newSquad->setImage(NULL);
 			$this->squadRepository->add($newSquad);
@@ -208,58 +169,19 @@ class SquadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 * @return void
 	 */
 	public function updateAction(\MFG\Squad\Domain\Model\Squad $squad) {
-		$imageName = $squad->getImage()['name'];
-		$imageType = $squad->getImage()['type'];
-		$imageTmpName = $squad->getImage()['tmp_name'];
-		$imageError = $squad->getImage()['error'];
-		$imageSize = $squad->getImage()['size'];
+		$file = $squad->getImage();
+		$fileObjectIdentifier = \MFG\Squad\Utility\FalUtility::uploadFile($file, 1);
 
-		if ($imageError === UPLOAD_ERR_OK) {
-			$storageRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\Resource\StorageRepository');
-			$storage = $storageRepository->findByUid(1);
-			$fileObject = $storage->addFile($imageTmpName, $storage->getRootLevelFolder(), $imageName);
-
-			$fileObjectIdentifier = $fileObject->getIdentifier();
-
+		if ($fileObjectIdentifier !== NULL) {
 			$squad->setImage(basename($fileObjectIdentifier));
-
-			$this->squadRepository->update($squad);
-
+			$this->squadRepository->add($squad);
 			$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager');
 			$persistenceManager->persistAll();
+			$foreignUid = $squad->getUid();
 
-			$squadUid = $squad->getUid();
+			$localUid = \MFG\Squad\Utility\FalUtility::insertFile($file, 1, $fileObjectIdentifier);
 
-			$newSysFields = array(
-				'pid' => 0,
-				'identifier' => $fileObjectIdentifier,
-				'mime_type' => $imageType,
-				'name' => $fileObjectIdentifier,
-				'size' => $imageSize,
-				'storage' => 1,
-			);
-
-			$newSysRes = $GLOBALS['TYPO3_DB']->exec_INSERTquery('sys_file', $newSysFields);
-			$uid_local = $GLOBALS['TYPO3_DB']->sql_insert_id($newSysRes);
-
-			$data = array();
-			$data['sys_file_reference'][$squad->getImage()] = array(
-				'uid_local' => $uid_local,
-				'uid_foreign' => $squadUid,
-				'tablenames' => 'tx_squad_domain_model_squad',
-				'fieldname' => 'image',
-				'pid' => 69, // parent id of the parent page <-- TODO: Remove constant value!
-				'table_local' => 'sys_file',
-				'crdate' => $GLOBALS['EXEC_TIME'],
-				'tstamp' => $GLOBALS['EXEC_TIME']
-			);
-
-			$tce = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\DataHandling\DataHandler'); // create TCE instance
-			$tce->start($data, array(), $new_BE_USER);
-			$tce->process_datamap();
-			/*if ($tce->errorLog) $content .= 'TCE->errorLog:' . t3lib_utility_Debug::viewArray($tce->errorLog);
-			else $content .= 'image changed <br>' . t3lib_utility_Debug::viewArray($data);
-			*/
+			\MFG\Squad\Utility\FalUtility::insertFileReference($localUid, $foreignUid, 'tx_squad_domain_model_squad', 'image', $fileObjectIdentifier, 69);
 		} else {
 			$propertyMapper = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Property\PropertyMapper');
 			$input = array(
