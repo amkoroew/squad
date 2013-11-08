@@ -174,7 +174,7 @@ class SquadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 		if ($fileObjectIdentifier !== NULL) {
 			$squad->setImage(basename($fileObjectIdentifier));
-			$this->squadRepository->add($squad);
+			$this->squadRepository->update($squad);
 			$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager');
 			$persistenceManager->persistAll();
 			$foreignUid = $squad->getUid();
