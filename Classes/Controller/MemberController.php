@@ -132,7 +132,6 @@ class MemberController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function createAction(\MFG\Squad\Domain\Model\Member $newMember) {
-		$propertyMapper = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Property\PropertyMapper');
 
 		if ($this->arguments->hasArgument('newMember')) {
 			$roleUids = $this->request->getArgument('roles');
