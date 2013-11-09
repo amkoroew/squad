@@ -113,7 +113,7 @@ class SquadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 		if ($fileObjectIdentifier !== NULL) {
 			$newSquad->setImage(basename($fileObjectIdentifier));
 			$fileUid = \MFG\Squad\Utility\FalUtility::insertFile($file, 1, $fileObjectIdentifier);
-			\MFG\Squad\Utility\FalUtility::insertFileReference($fileUid, $newSquad->getUid(), 'tx_squad_domain_model_squad', 'image', $fileObjectIdentifier, 69);
+			\MFG\Squad\Utility\FalUtility::insertFileReference($fileUid, $newSquad->getUid(), 'tx_squad_domain_model_squad', 'image', $fileObjectIdentifier, $this->settings['storagePid']);
 		}
 
 		$this->squadRepository->add($newSquad);
@@ -175,7 +175,7 @@ class SquadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 			$fileUid = \MFG\Squad\Utility\FalUtility::insertFile($file, 1, $fileObjectIdentifier);
 			$squadUid = $squad->getUid();
 			\MFG\Squad\Utility\FalUtility::deleteOldFileReference($squadUid);
-			\MFG\Squad\Utility\FalUtility::insertFileReference($fileUid, $squadUid, 'tx_squad_domain_model_squad', 'image', $fileObjectIdentifier, 69);
+			\MFG\Squad\Utility\FalUtility::insertFileReference($fileUid, $squadUid, 'tx_squad_domain_model_squad', 'image', $fileObjectIdentifier, $this->settings['storagePid']);
 		} else {
 			$propertyMapper = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Property\PropertyMapper');
 			$input = array(
