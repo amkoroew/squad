@@ -150,23 +150,18 @@ class MemberController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 		}
 
 		$file = $newMember->getImage();
-		$fileObjectIdentifier = \MFG\Squad\Utility\FalUtility::uploadFile($file, 1);
+		$newMember->setImage('');
+		$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager');
+		$persistenceManager->persistAll();
 
+		$fileObjectIdentifier = \MFG\Squad\Utility\FalUtility::uploadFile($file, 1);
 		if ($fileObjectIdentifier !== NULL) {
 			$newMember->setImage(basename($fileObjectIdentifier));
-			$this->memberRepository->add($newMember);
-			$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager');
-			$persistenceManager->persistAll();
-			$foreignUid = $newMember->getUid();
-
-			$localUid = \MFG\Squad\Utility\FalUtility::insertFile($file, 1, $fileObjectIdentifier);
-
-			\MFG\Squad\Utility\FalUtility::insertFileReference($localUid, $foreignUid, 'tx_squad_domain_model_member', 'image', $fileObjectIdentifier, 69);
-		} else {
-			$newMember->setImage(NULL);
-			$this->memberRepository->add($newMember);
+			$fileUid = \MFG\Squad\Utility\FalUtility::insertFile($file, 1, $fileObjectIdentifier);
+			\MFG\Squad\Utility\FalUtility::insertFileReference($fileUid, $newMember->getUid(), 'tx_squad_domain_model_member', 'image', $fileObjectIdentifier, 69);
 		}
 
+		$this->memberRepository->add($newMember);
 		$this->flashMessageContainer->add('Your new Member was created.');
 		$this->redirect('list');
 	}
@@ -205,19 +200,17 @@ class MemberController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 */
 	public function updateAction(\MFG\Squad\Domain\Model\Member $member) {
 		$file = $member->getImage();
-		$fileObjectIdentifier = \MFG\Squad\Utility\FalUtility::uploadFile($file, 1);
+		$member->setImage('');
+		$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager');
+		$persistenceManager->persistAll();
 
+		$fileObjectIdentifier = \MFG\Squad\Utility\FalUtility::uploadFile($file, 1);
 		if ($fileObjectIdentifier !== NULL) {
 			$member->setImage(basename($fileObjectIdentifier));
-			$this->memberRepository->update($member);
-			$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager');
-			$persistenceManager->persistAll();
-			$foreignUid = $member->getUid();
-
-			$localUid = \MFG\Squad\Utility\FalUtility::insertFile($file, 1, $fileObjectIdentifier);
-
-			\MFG\Squad\Utility\FalUtility::deleteOldFileReference($foreignUid);
-			\MFG\Squad\Utility\FalUtility::insertFileReference($localUid, $foreignUid, 'tx_squad_domain_model_member', 'image', $fileObjectIdentifier, 69);
+			$fileUid = \MFG\Squad\Utility\FalUtility::insertFile($file, 1, $fileObjectIdentifier);
+			$memberUid = $member->getUid();
+			\MFG\Squad\Utility\FalUtility::deleteOldFileReference($memberUid);
+			\MFG\Squad\Utility\FalUtility::insertFileReference($fileUid, $memberUid, 'tx_squad_domain_model_member', 'image', $fileObjectIdentifier, 69);
 		} else {
 			$propertyMapper = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Property\PropertyMapper');
 			$input = array(
@@ -225,8 +218,9 @@ class MemberController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 				'name' => trim($member->getName()),
 			);
 			$member = $propertyMapper->convert($input, '\MFG\Squad\Domain\Model\Member');
-			$this->memberRepository->update($member);
 		}
+
+		$this->memberRepository->update($member);
 		$this->flashMessageContainer->add('Your Member was updated.');
 		$this->redirect('list');
 	}
